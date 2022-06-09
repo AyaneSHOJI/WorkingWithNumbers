@@ -1,0 +1,4 @@
+﻿- Complex numbers
+i2=−1
+a+bi
+a : Real, b: Imaginary
