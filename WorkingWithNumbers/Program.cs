@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Globalization;
+using System.Numerics;
 using static System.Console;
 
 
@@ -86,4 +87,48 @@ WriteLine("There are {0} days and {1} hours until Christmas",
 
 WriteLine("There are {0:N0} hours until Christmas",
     arg0: untilChristmas.TotalHours);
-   
+
+// P.327 globalization
+WriteLine("Current culture is : {0}", arg0 : CultureInfo.CurrentCulture.Name);
+string textDate = "4 July 2021";
+DateTime independenceDay = DateTime.Parse(textDate);
+WriteLine("Text: {0}, DateTime: {1:d MMMM}",
+    arg0: textDate,
+    arg1: independenceDay);
+
+textDate = "7/4/2021";
+independenceDay = DateTime.Parse(textDate);
+WriteLine("Text: {0}, DateTime: {1:d MMMM}",
+    arg0: textDate,
+    arg1: independenceDay);
+
+independenceDay = DateTime.Parse(textDate,
+    provider: CultureInfo.GetCultureInfo("en-US"));
+WriteLine("Text: {0}, DateTime: {1:d MMMM}",
+    arg0: textDate,
+    arg1: independenceDay);
+
+for(int year = 2020; year < 2026; year++)
+{
+    Write($"{year} is a leap year : {DateTime.IsLeapYear(year)} ");
+    WriteLine("There are {0} days in Feburary {0}",
+        arg0: DateTime.DaysInMonth(year: year, month: 2),
+        arg1: year);
+}
+
+WriteLine("Is Christmas dayligh saving time ? {0}",
+    arg0: christmas.IsDaylightSavingTime());
+
+WriteLine("Is July 4th daylight saving time ? {0}",
+    arg0: independenceDay.IsDaylightSavingTime());
+
+
+// p.329 date or time only
+DateOnly queensBirthday = new(year: 2022, month: 4, day: 21);
+WriteLine($"The Queen's next birthday is on {queensBirthday}");
+
+TimeOnly partyStarts = new(hour: 20, minute: 30);
+WriteLine($"The Queen's party starts at {partyStarts}");
+
+DateTime calendarEntry= queensBirthday.ToDateTime(partyStarts);
+WriteLine($"Add to your calender: {calendarEntry}");
