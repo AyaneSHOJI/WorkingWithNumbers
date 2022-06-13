@@ -62,3 +62,28 @@ WriteLine(recombined);
 
 // p.324 Building strings efficiently
 // avoid String.Cancat or + operator because these methods create a completelu new string in memory
+
+WriteLine("Earliest date/Time value is {0}", arg0 : DateTime.MinValue);
+WriteLine("UNIX epoch date/Time value is {0}", arg0 : DateTime.UnixEpoch);
+WriteLine("Date/Time value Now is {0}", arg0 : DateTime.Today);
+
+DateTime christmas = new(year: 2021, month:12, day:25);
+WriteLine(christmas);
+WriteLine("{0:dddd, dd MMMM yyyy}", arg0: christmas);
+WriteLine("Christmas is the day {0} of the year", arg0: christmas.DayOfYear);
+WriteLine("Christmas {0} is on a {1}", arg0: christmas.Year, arg1: christmas.DayOfWeek);
+
+DateTime beforeXmas = christmas.Subtract(TimeSpan.FromDays(12));
+DateTime afterXmas = christmas.AddDays(12);
+WriteLine($"12 days before Christmas is {beforeXmas}");
+WriteLine($"12 days after Christmas is {afterXmas}");
+
+TimeSpan untilChristmas = christmas - DateTime.Now;
+
+WriteLine("There are {0} days and {1} hours until Christmas",
+    arg0: untilChristmas.Days,
+    arg1: untilChristmas.Hours);
+
+WriteLine("There are {0:N0} hours until Christmas",
+    arg0: untilChristmas.TotalHours);
+   
